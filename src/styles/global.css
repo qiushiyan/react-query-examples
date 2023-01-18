@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@100&family=Lora&family=Space+Grotesk:wght@300&display=swap");
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+pre {
+  font-family: "Azeret Mono", monospace;
+}
+
+strong {
+  font-style: normal;
+  border-bottom: 1px solid #fde68a;
+}
+
+article {
+  font-size: 18px;
+}
+
+.token.keyword {
+  font-style: normal !important;
+}

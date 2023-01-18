@@ -1,0 +1,11 @@
+.sidebar {
+  counter-reset: sidebar-counter;
+}
+
+.sidebar li {
+  counter-increment: sidebar-counter;
+}
+
+.sidebar li::before {
+  content: counter(sidebar-counter) ". ";
+}
