@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { fetcher } from "../../src/lib/utils";
+import Spinner from "@components/ui/Spinner";
 
 type Data = {
   name: string;
@@ -25,7 +26,7 @@ export default function Example() {
     fetchRepoData
   );
 
-  if (isLoading || isFetching) return <p>"Loading..."</p>;
+  if (isLoading || isFetching) return <Spinner />;
 
   if (error) return <p>"An error has occurred: " + error.message</p>;
 

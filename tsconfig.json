@@ -100,7 +100,7 @@
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
-    "baseUrl": "./src",
+    "baseUrl": "src",
     "paths": {
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
@@ -114,8 +114,7 @@
     "./gatsby-config.ts",
     "./plugins/**/*",
     "posts/index.tsx",
-    "posts/index.tsx",
-    "posts/basics/FetchRepo.tsx.tsx",
-    "posts/basics/FetchRepo.tsx.tsx"
+    "posts/basics/FetchRepo.tsx",
+    "./src/styles/*"
   ]
 }

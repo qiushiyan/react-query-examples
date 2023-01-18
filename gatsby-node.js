@@ -1,5 +1,6 @@
 const path = require("path");
 const PostTemplate = require.resolve("./src/template.tsx");
+const Sidebar = require.resolve("./src/components/Sidebar.tsx");
 const { createFilePath } = require("gatsby-source-filesystem");
 const { allPages } = require("./query.js");
 
@@ -25,8 +26,17 @@ exports.createPages = async function ({ actions, graphql }) {
 	const { data } = await graphql(allPages);
 	data.allMdx.edges.forEach((post) => {
 		const filePath = post.node.internal.contentFilePath;
-		const previous = post.previous !== null ? post.previous.fields.slug : null;
-		const next = post.next !== null ? post.next.fields.slug : null;
+		const previous =
+			post.previous !== null
+				? {
+						slug: post.previous.fields.slug,
+						title: post.previous.frontmatter.title,
+				  }
+				: null;
+		const next =
+			post.next !== null
+				? { slug: post.next.fields.slug, title: post.next.frontmatter.title }
+				: null;
 		actions.createPage({
 			path: post.node.fields.slug,
 			component: `${PostTemplate}?__contentFilePath=${filePath}`,
@@ -38,6 +48,11 @@ exports.createPages = async function ({ actions, graphql }) {
 				next,
 			},
 		});
+	});
+
+	actions.createSlice({
+		id: "Sidebar",
+		component: Sidebar,
 	});
 };
 

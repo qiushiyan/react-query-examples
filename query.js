@@ -2,11 +2,6 @@ exports.allPages = `
     query MyQuery {
       allMdx(sort: {fields: {group: ASC}}) {
         edges {
-          previous {
-            fields {
-              slug
-            }
-          }
           node {
             frontmatter {
               title
@@ -19,9 +14,20 @@ exports.allPages = `
               slug
             }
           }
+          previous {
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+            }
+          }
           next {
             fields {
               slug
+            }
+            frontmatter {
+              title
             }
           }
         }

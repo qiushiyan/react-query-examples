@@ -1,5 +1,6 @@
-import { Link, graphql, useStaticQuery } from "gatsby";
+import { Link, PageProps, graphql } from "gatsby";
 import React from "react";
+// @ts-ignore
 import * as styles from "@styles/sidebar.module.css";
 import clsx from "clsx";
 
@@ -24,22 +25,7 @@ type SidebarLink = {
   slug: string;
 };
 
-export default function Sidebar() {
-  const data = useStaticQuery<Data>(graphql`
-    query MyQuery {
-      allMdx(sort: { fields: { group: ASC } }) {
-        nodes {
-          frontmatter {
-            title
-          }
-          fields {
-            slug
-            group
-          }
-        }
-      }
-    }
-  `);
+export default function Sidebar({ data }: PageProps<Data, unknown>) {
   const links = data.allMdx.nodes.reduce<{ [key: string]: SidebarLink[] }>(
     (acc, current) => {
       if (!acc.hasOwnProperty(current.fields.group)) {
@@ -81,3 +67,19 @@ export default function Sidebar() {
     </nav>
   );
 }
+
+export const query = graphql`
+  query MyQuery {
+    allMdx(sort: { fields: { group: ASC } }) {
+      nodes {
+        frontmatter {
+          title
+        }
+        fields {
+          slug
+          group
+        }
+      }
+    }
+  }
+`;

@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "./Sidebar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Slice } from "gatsby";
 
 interface Props {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export default function Layout({ children }: Props) {
       <div className="content w-full min-h-screen bg-dark text-light p-10 dark">
         <main className="max-w-6xl grid grid-cols-4 gap-12 mx-auto">
           <div className="col-span-1">
-            <Sidebar />
+            <Slice alias="Sidebar" />
           </div>
           <div className="col-span-3">{children}</div>
         </main>

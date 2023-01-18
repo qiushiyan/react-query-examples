@@ -6,14 +6,14 @@ const PrismSyntaxHighlight = ({
   children,
   className,
 }: {
-  children: string;
+  children: React.ReactNode;
   className: string;
 }) => {
   const language = className.replace(/language-/gm, "") as Language;
   return (
     <Highlight
       {...defaultProps}
-      code={children}
+      code={children as string}
       language={language}
       theme={theme}
     >
@@ -32,4 +32,18 @@ const PrismSyntaxHighlight = ({
   );
 };
 
-export default PrismSyntaxHighlight;
+export default function CodeHighlight({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className: string;
+}) {
+  return className ? (
+    <PrismSyntaxHighlight className={className}>
+      {children}
+    </PrismSyntaxHighlight>
+  ) : (
+    <code>{children}</code>
+  );
+}
